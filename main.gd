@@ -134,21 +134,16 @@ func calculate_micro_corrections(points: Array[Vector2]) -> int:
 func finish_session() -> void:
 	var accuracy = (float(targets_hit_count) / float(total_clicks)) * 100.0 if total_clicks > 0 else 0.0
 	print("--- SESSION FLICK TERMINÉE ---")
-	print("Précision globale : ", snapped(accuracy, 0.01), "% (", targets_hit_count, "/", total_clicks, " clics)")
-	export_json(accuracy)
-
-func export_json(accuracy: float) -> void:
-	var payload = {
-		"mode": "flick",
-		"timestamp": Time.get_unix_time_from_system(),
+	print("Précision globale : ", snapped(accuracy, 0.01), "%")
+	
+	var flick_metrics = {
 		"total_targets": MAX_TARGETS,
 		"total_clicks": total_clicks,
 		"accuracy_pct": snapped(accuracy, 0.01),
 		"shots": session_data
 	}
 	
-	var file = FileAccess.open("res://session_flick.json", FileAccess.WRITE)
-	if file:
-		file.store_string(JSON.stringify(payload, "\t"))
-		file.close()
-		print("Données exportées : res://session_flick.json")
+	# Appel du Singleton
+	Sessionmanager.save_session("flick", flick_metrics)
+
+	

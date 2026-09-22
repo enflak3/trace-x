@@ -14,6 +14,10 @@ config/name="trace-x"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Sessionmanager="*uid://d2sbxbc8h6dvl"
+
 [display]
 
 window/stretch/mode="canvas_items"

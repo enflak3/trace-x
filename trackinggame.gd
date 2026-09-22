@@ -33,7 +33,6 @@ func finish_tracking_session() -> void:
 	var tracked_ms = active_target.tracked_time_msec
 	var tracking_ratio = (float(tracked_ms) / float(total_time_ms)) * 100.0
 	
-	# Calcul de l'écart moyen au centre
 	var samples = active_target.distance_samples
 	var avg_distance: float = 0.0
 	if not samples.is_empty():
@@ -42,27 +41,14 @@ func finish_tracking_session() -> void:
 			total_dist += dist
 		avg_distance = total_dist / float(samples.size())
 	
-	print("--- SESSION TRACKING TERMINÉE ---")
-	print("Temps sur cible : ", tracked_ms, " ms / ", total_time_ms, " ms")
-	print("Précision (Time on Target) : ", snapped(tracking_ratio, 0.01), "%")
-	print("Distance moyenne au centre : ", snapped(avg_distance, 0.1), " px")
-	
-	export_tracking_data(tracked_ms, total_time_ms, tracking_ratio, avg_distance)
-	active_target.queue_free()
-
-func export_tracking_data(tracked_ms: int, total_ms: int, ratio: float, avg_dist: float) -> void:
-	var payload = {
-		"mode": "tracking",
-		"timestamp": Time.get_unix_time_from_system(),
+	var tracking_metrics = {
 		"duration_sec": SESSION_DURATION_SEC,
 		"tracked_time_ms": tracked_ms,
-		"total_time_ms": total_ms,
-		"time_on_target_pct": snapped(ratio, 0.01),
-		"avg_offset_px": snapped(avg_dist, 0.1)
+		"total_time_ms": total_time_ms,
+		"time_on_target_pct": snapped(tracking_ratio, 0.01),
+		"avg_offset_px": snapped(avg_distance, 0.1)
 	}
 	
-	var file = FileAccess.open("res://session_tracking.json", FileAccess.WRITE)
-	if file:
-		file.store_string(JSON.stringify(payload, "\t"))
-		file.close()
-		print("Fichier exporté : res://session_tracking.json")
+	# Appel du Singleton
+	Sessionmanager.save_session("tracking", tracking_metrics)
+	active_target.queue_free()
