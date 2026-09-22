@@ -1,3 +1,31 @@
 # Godot 4+ specific ignores
+# Cache et fichiers internes de Godot 4 (INDISPENSABLE)
 .godot/
+
+# Fichiers d'importation automatique (Godot 3 / compatibilité)
+.import/
+
+# Données temporaires et exports
+*.translation
+*.pck
+*.apk
+*.aab
+*.exe
+*.zip
+
+# Fichiers de configuration / cache des éditeurs de code (VS Code, etc.)
+.vscode/
+.idea/
+
+# Fichiers générés par l'OS
+.DS_Store
+Thumbs.db
+
+# Fichiers d'exportation de métriques / tests locaux (si vous en créez)
+# *.csv
+# *.json
+
+*.log
+.directory
+
 /android/
