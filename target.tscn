@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://df83t1vuq1koq" path="res://spheres-rouges-vectorielles-isolees-fond-blanc_921039-12638-removebg-preview.png" id="2_e1yvt"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_44saq"]
-radius = 109.41
+radius = 50.0
 
 [node name="Target" type="Area2D" unique_id=308980360]
 script = ExtResource("1_e1yvt")
@@ -13,7 +13,7 @@ script = ExtResource("1_e1yvt")
 shape = SubResource("CircleShape2D_44saq")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1209262227]
-scale = Vector2(0.62, 0.62)
+scale = Vector2(0.277, 0.277)
 texture = ExtResource("2_e1yvt")
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
