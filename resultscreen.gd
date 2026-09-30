@@ -27,27 +27,29 @@ func display_last_results() -> void:
 	
 	if last_mode == "flick":
 		mode_title.text = "RÉSULTATS - FLICKING"
-		var acc = float(metrics["accuracy_pct"])
-		accuracy_label.text = "Précision : " + str(acc) + " %"
-		grade_label.text = calculate_grade(acc)
 		
-		# Calcul des moyennes du run
+		# On affiche le taux de réussite brut comme précision principale (pour la note SS/S/A/...)
+		var hit_rate = float(metrics.get("hit_rate_pct", 0.0))
+		var centering = float(metrics.get("centering_pct", 0.0))
+		
+		accuracy_label.text = "Taux de réussite : " + str(hit_rate) + " %"
+		grade_label.text = calculate_grade(hit_rate)
+		
+		# Calcul des moyennes complémentaires
 		var shots: Array = metrics.get("shots", [])
 		var avg_react = 0.0
 		var avg_eff = 0.0
-		var total_corrections = 0
 		for shot in shots:
-			avg_react += shot["reaction_time_ms"]
-			avg_eff += shot["path_efficiency"]
-			total_corrections += shot.get("micro_corrections", 0)
+			avg_react += shot.get("reaction_time_ms", 0.0)
+			avg_eff += shot.get("path_efficiency", 0.0)
 			
 		if not shots.is_empty():
 			avg_react /= float(shots.size())
 			avg_eff /= float(shots.size())
 			
-		stat1.text = "Temps de réaction moyen : " + str(snapped(avg_react, 1.0)) + " ms"
-		stat2.text = "Efficacité trajectoire : " + str(snapped(avg_eff * 100.0, 0.1)) + " %"
-		stat3.text = "Micro-corrections totales : " + str(total_corrections)
+		stat1.text = "Précision centrage : " + str(centering) + " %"
+		stat2.text = "Temps de réaction : " + str(snapped(avg_react, 1.0)) + " ms"
+		stat3.text = "Efficacité trajectoire : " + str(snapped(avg_eff * 100.0, 0.1)) + " %"
 		
 	elif last_mode == "tracking":
 		mode_title.text = "RÉSULTATS - TRACKING"

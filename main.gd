@@ -82,6 +82,8 @@ func _on_target_hit(reaction_time: int, target_pos: Vector2, click_pos: Vector2)
 	total_clicks += 1
 	targets_hit_count += 1
 
+
+
 	var direct_distance = mouse_pos_at_spawn.distance_to(click_pos)
 	var actual_path_distance = 0.0
 	for i in range(1, mouse_path.size()):
@@ -134,39 +136,56 @@ func _on_target_hit(reaction_time: int, target_pos: Vector2, click_pos: Vector2)
 	else:
 		spawn_target()
 
-func calculate_micro_corrections(points: Array[Vector2]) -> int:
-	if points.size() < 3:
-		return 0
-
-	var corrections: int = 0
-	var threshold_angle: float = deg_to_rad(35.0)
-
-	for i in range(1, points.size() - 1):
-		var v1 = (points[i] - points[i - 1]).normalized()
-		var v2 = (points[i + 1] - points[i]).normalized()
-
-		if v1.length_squared() > 0 and v2.length_squared() > 0:
-			var angle_diff = abs(v1.angle_to(v2))
-			if angle_diff > threshold_angle:
-				corrections += 1
-
-	return corrections
-
 func finish_session() -> void:
 	if not is_session_active:
 		return
 	is_session_active = false
 
-	var accuracy = (float(targets_hit_count) / float(total_clicks)) * 100.0 if total_clicks > 0 else 0.0
+	# 1. Précision brute (Hit Rate)
+	var hit_rate = (float(targets_hit_count) / float(total_clicks)) * 100.0 if total_clicks > 0 else 0.0
+
+	# 2. Précision de centrage (moyenne sur tous les tirs réussis)
+	# Rayon standard de la cible : 32 px (ajuste si ton CollisionShape2D est différent)
+	var target_radius: float = 32.0
+	var total_centering_pct: float = 0.0
+
+	for shot in session_data:
+		var dist: float = shot.get("offset_from_center_px", 0.0)
+		# 100% au centre pile, 0% si touché à l'extrême bord du rayon
+		var shot_centering = clamp((1.0 - (dist / target_radius)) * 100.0, 0.0, 100.0)
+		total_centering_pct += shot_centering
+
+	var avg_centering = (total_centering_pct / float(session_data.size())) if not session_data.is_empty() else 0.0
+
 	print("--- SESSION FLICK TERMINÉE ---")
-	print("Précision globale : ", snapped(accuracy, 0.01), "%")
+	print("Hit Rate : ", snapped(hit_rate, 0.01), "%")
+	print("Centrage moyen : ", snapped(avg_centering, 0.01), "%")
 
 	var flick_metrics = {
 		"total_targets": MAX_TARGETS,
 		"total_clicks": total_clicks,
-		"accuracy_pct": snapped(accuracy, 0.01),
+		"hit_rate_pct": snapped(hit_rate, 0.01),
+		"centering_pct": snapped(avg_centering, 0.01),
 		"shots": session_data
 	}
 
 	Sessionmanager.save_session("flick", flick_metrics)
 	get_tree().change_scene_to_file("res://ResultScreen.tscn")
+
+func calculate_micro_corrections(points: Array[Vector2]) -> int:
+	if points.size() < 3:
+		return 0
+		
+	var corrections: int = 0
+	var threshold_angle: float = deg_to_rad(35.0)
+	
+	for i in range(1, points.size() - 1):
+		var v1 = (points[i] - points[i - 1]).normalized()
+		var v2 = (points[i + 1] - points[i]).normalized()
+		
+		if v1.length_squared() > 0 and v2.length_squared() > 0:
+			var angle_diff = abs(v1.angle_to(v2))
+			if angle_diff > threshold_angle:
+				corrections += 1
+				
+	return corrections
