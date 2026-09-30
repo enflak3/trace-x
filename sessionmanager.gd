@@ -1,53 +1,45 @@
 extends Node
 
-const SAVE_PATH: String = "user://session_history.json"
-
-# Tableau contenant l'historique complet des sessions
-var history: Array = []
 var target_count_setting: int = 10
+var history: Array = []
+
+# Overlay FPS global
+var fps_label: Label = null
+var show_fps: bool = false
 
 func _ready() -> void:
-	load_history()
-
-func save_session(mode_name: String, session_metrics: Dictionary) -> void:
-	var session_entry = {
-		"session_id": history.size() + 1,
-		"mode": mode_name,
-		"timestamp_unix": Time.get_unix_time_from_system(),
-		"datetime_iso": Time.get_datetime_string_from_system(false, true),
-		"display_resolution": {
-			"width": get_viewport().get_visible_rect().size.x,
-			"height": get_viewport().get_visible_rect().size.y
-		},
-		"metrics": session_metrics
-	}
+	# CanvasLayer indépendant pour que l'overlay reste par-dessus toutes les scènes
+	var canvas_layer = CanvasLayer.new()
+	canvas_layer.layer = 128
+	add_child(canvas_layer)
 	
-	history.append(session_entry)
-	write_to_disk()
-	print("[SessionManager] Session #", session_entry["session_id"], " (", mode_name, ") sauvegardée.")
+	fps_label = Label.new()
+	fps_label.visible = false
+	fps_label.set_anchors_preset(Control.PRESET_BOTTOM_RIGHT)
+	fps_label.offset_left = -90
+	fps_label.offset_top = -30
+	fps_label.offset_right = -10
+	fps_label.offset_bottom = -10
+	fps_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	fps_label.modulate = Color(1, 1, 1, 0.7)
+	canvas_layer.add_child(fps_label)
 
-func write_to_disk() -> void:
-	var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
-	if file:
-		file.store_string(JSON.stringify(history, "\t"))
-		file.close()
-	else:
-		printerr("[SessionManager] Erreur lors de l'ouverture du fichier en écriture.")
+func _process(_delta: float) -> void:
+	if show_fps and fps_label:
+		fps_label.text = str(Engine.get_frames_per_second()) + " FPS"
 
-func load_history() -> void:
-	if not FileAccess.file_exists(SAVE_PATH):
-		history = []
-		return
-		
-	var file = FileAccess.open(SAVE_PATH, FileAccess.READ)
-	if file:
-		var content = file.get_as_text()
-		file.close()
-		var parsed = JSON.parse_string(content)
-		if parsed is Array:
-			history = parsed
-		else:
-			history = []
+func set_fps_display(enabled: bool) -> void:
+	show_fps = enabled
+	if fps_label:
+		fps_label.visible = enabled
 
-func get_sessions_by_mode(mode_name: String) -> Array:
-	return history.filter(func(s): return s["mode"] == mode_name)
+func set_fps_limit(limit: int) -> void:
+	Engine.max_fps = limit
+
+func save_session(mode_name: String, metrics: Dictionary) -> void:
+	var entry = {
+		"mode": mode_name,
+		"metrics": metrics,
+		"timestamp": Time.get_datetime_string_from_system()
+	}
+	history.append(entry)

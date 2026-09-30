@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cs4vtsvd807ms"]
 
 [ext_resource type="Script" uid="uid://c614wg7dau8a8" path="res://main_menu.gd" id="1_06t4h"]
+[ext_resource type="Texture2D" uid="uid://daryke23gue0j" path="res://gear-removebg-preview.png" id="2_7vrkn"]
 
 [node name="MainMenu" type="Control" unique_id=1301583674]
 layout_mode = 3
@@ -80,6 +81,61 @@ text = "50"
 [node name="BtnBack" type="Button" parent="FlickSelectPanel/VBoxContainer" unique_id=1545175015]
 layout_mode = 2
 text = "Retour"
+
+[node name="BtnSettings" type="Button" parent="." unique_id=832547318]
+layout_mode = 1
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 523.0
+offset_bottom = 523.0
+scale = Vector2(0.2, 0.2)
+offset_transform_enabled = true
+icon = ExtResource("2_7vrkn")
+
+[node name="SettingsPanel" type="PanelContainer" parent="." unique_id=117764600]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SettingsPanel" unique_id=1628153138]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SettingsPanel/VBoxContainer" unique_id=161372388]
+layout_mode = 2
+text = "PARAMÈTRES	"
+horizontal_alignment = 1
+
+[node name="CheckFullscreen" type="CheckButton" parent="SettingsPanel/VBoxContainer" unique_id=1894645687]
+layout_mode = 2
+text = "Plein écran"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SettingsPanel/VBoxContainer" unique_id=343986641]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SettingsPanel/VBoxContainer/HBoxContainer" unique_id=1339917649]
+layout_mode = 2
+text = "Limite FPS : "
+
+[node name="OptionFps" type="OptionButton" parent="SettingsPanel/VBoxContainer/HBoxContainer" unique_id=409852440]
+layout_mode = 2
+
+[node name="CheckShowFps" type="CheckButton" parent="SettingsPanel/VBoxContainer" unique_id=515276170]
+layout_mode = 2
+text = "Afficher les FPS"
+
+[node name="BtnCloseSettings" type="Button" parent="SettingsPanel/VBoxContainer" unique_id=1325409911]
+layout_mode = 2
+text = "Fermer"
 
 [connection signal="pressed" from="VBoxContainer/BtnFlick" to="." method="_on_btn_flick_pressed"]
 [connection signal="pressed" from="VBoxContainer/BtnTracking" to="." method="_on_btn_tracking_pressed"]
