@@ -37,5 +37,49 @@ text = "Mode Flicking"
 layout_mode = 2
 text = "Mode Tracking"
 
+[node name="FlickSelectPanel" type="PanelContainer" parent="." unique_id=943096321]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="FlickSelectPanel" unique_id=370234847]
+layout_mode = 2
+
+[node name="Nombre de cibles" type="Label" parent="FlickSelectPanel/VBoxContainer" unique_id=946609378]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="FlickSelectPanel/VBoxContainer" unique_id=912842343]
+layout_mode = 2
+
+[node name="Btn10" type="Button" parent="FlickSelectPanel/VBoxContainer/HBoxContainer" unique_id=1515724876]
+custom_minimum_size = Vector2(70, 50)
+layout_mode = 2
+text = "10"
+
+[node name="Btn25" type="Button" parent="FlickSelectPanel/VBoxContainer/HBoxContainer" unique_id=1317856658]
+custom_minimum_size = Vector2(70, 50)
+layout_mode = 2
+text = "25"
+
+[node name="Btn50" type="Button" parent="FlickSelectPanel/VBoxContainer/HBoxContainer" unique_id=382504192]
+custom_minimum_size = Vector2(70, 50)
+layout_mode = 2
+text = "50"
+
+[node name="BtnBack" type="Button" parent="FlickSelectPanel/VBoxContainer" unique_id=1545175015]
+layout_mode = 2
+text = "Retour"
+
 [connection signal="pressed" from="VBoxContainer/BtnFlick" to="." method="_on_btn_flick_pressed"]
 [connection signal="pressed" from="VBoxContainer/BtnTracking" to="." method="_on_btn_tracking_pressed"]

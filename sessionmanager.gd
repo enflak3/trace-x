@@ -4,6 +4,7 @@ const SAVE_PATH: String = "user://session_history.json"
 
 # Tableau contenant l'historique complet des sessions
 var history: Array = []
+var target_count_setting: int = 10
 
 func _ready() -> void:
 	load_history()

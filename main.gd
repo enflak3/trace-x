@@ -2,7 +2,7 @@ extends Node2D
 
 var target_scene: PackedScene = preload("res://Target.tscn")
 
-const MAX_TARGETS: int = 10
+var max_targets: int = 10
 var targets_hit_count: int = 0
 var total_clicks: int = 0
 
@@ -22,6 +22,7 @@ var session_data: Array = []
 func _ready() -> void:
 	is_session_active = true
 	spawn_target()
+	max_targets = Sessionmanager.target_count_setting
 
 func _process(_delta: float) -> void:
 	if is_tracking_path:
@@ -49,7 +50,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		print("Tir manqué ! Total clics : ", total_clicks)
 
 func spawn_target() -> void:
-	if targets_hit_count >= MAX_TARGETS:
+	if targets_hit_count >= max_targets:
 		finish_session()
 		return
 
@@ -131,7 +132,7 @@ func _on_target_hit(reaction_time: int, target_pos: Vector2, click_pos: Vector2)
 
 	current_target = null
 
-	if targets_hit_count >= MAX_TARGETS:
+	if targets_hit_count >= max_targets:
 		finish_session()
 	else:
 		spawn_target()
@@ -162,7 +163,7 @@ func finish_session() -> void:
 	print("Centrage moyen : ", snapped(avg_centering, 0.01), "%")
 
 	var flick_metrics = {
-		"total_targets": MAX_TARGETS,
+		"total_targets": max_targets,
 		"total_clicks": total_clicks,
 		"hit_rate_pct": snapped(hit_rate, 0.01),
 		"centering_pct": snapped(avg_centering, 0.01),
