@@ -31,7 +31,7 @@ func _on_flick_pressed() -> void:
 	flick_panel.visible = true
 
 func _on_tracking_pressed() -> void:
-	get_tree().change_scene_to_file("res://TrackingGame.tscn")
+	get_tree().change_scene_to_file("res://trackinggame.tscn")
 
 func _start_flick(count: int) -> void:
 	Sessionmanager.target_count_setting = count

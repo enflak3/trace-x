@@ -92,7 +92,7 @@ func _on_retry_pressed() -> void:
 	if last_mode == "flick":
 		get_tree().change_scene_to_file("res://Main.tscn")
 	elif last_mode == "tracking":
-		get_tree().change_scene_to_file("res://TrackingGame.tscn")
+		get_tree().change_scene_to_file("res://trackinggame.tscn")
 
 func _on_menu_pressed() -> void:
 	# Si votre binôme a fait un MainMenu.tscn, sinon recharge le jeu

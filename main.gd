@@ -1,6 +1,6 @@
 extends Node2D
 
-var target_scene: PackedScene = preload("res://Target.tscn")
+var target_scene: PackedScene = preload("res://target.tscn")
 
 var max_targets: int = 10
 var targets_hit_count: int = 0
@@ -171,7 +171,7 @@ func finish_session() -> void:
 	}
 
 	Sessionmanager.save_session("flick", flick_metrics)
-	get_tree().change_scene_to_file("res://ResultScreen.tscn")
+	get_tree().change_scene_to_file("res://resultscreen.tscn")
 
 func calculate_micro_corrections(points: Array[Vector2]) -> int:
 	if points.size() < 3:

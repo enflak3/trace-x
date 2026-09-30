@@ -1,6 +1,6 @@
 extends Node2D
 
-var tracking_target_scene: PackedScene = preload("res://TargetTracking.tscn")
+var tracking_target_scene: PackedScene = preload("res://targettracking.tscn")
 
 const SESSION_DURATION_SEC: float = 15.0
 var time_elapsed: float = 0.0
@@ -53,4 +53,4 @@ func finish_tracking_session() -> void:
 	Sessionmanager.save_session("tracking", tracking_metrics)
 	active_target.queue_free()
 	# Transition automatique vers le récap
-	get_tree().change_scene_to_file("res://ResultScreen.tscn")
+	get_tree().change_scene_to_file("res://resultscreen.tscn")
