@@ -52,3 +52,5 @@ func finish_tracking_session() -> void:
 	# Appel du Singleton
 	Sessionmanager.save_session("tracking", tracking_metrics)
 	active_target.queue_free()
+	# Transition automatique vers le récap
+	get_tree().change_scene_to_file("res://ResultScreen.tscn")

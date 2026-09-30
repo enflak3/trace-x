@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://rxpv8l0oft3x"]
+
+[ext_resource type="Script" uid="uid://doys2ad3aixxr" path="res://resultscreen.gd" id="1_g1oky"]
+
+[node name="resultscreen" type="Control" unique_id=1247441075]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_g1oky")
+
+[node name="background" type="ColorRect" parent="." unique_id=1222295637]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.07058824, 0.07450981, 0.101960786, 1)
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1965019]
+custom_minimum_size = Vector2(450, 350)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -10.0
+offset_top = -89.0
+offset_right = 10.0
+offset_bottom = 89.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=1611986535]
+layout_mode = 2
+
+[node name="modetitle" type="Label" parent="PanelContainer/VBoxContainer" unique_id=245526019]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+horizontal_alignment = 1
+
+[node name="gradelabel" type="Label" parent="PanelContainer/VBoxContainer" unique_id=1563371242]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+horizontal_alignment = 1
+
+[node name="accuracylabel" type="Label" parent="PanelContainer/VBoxContainer" unique_id=297950401]
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/VBoxContainer" unique_id=1444790473]
+layout_mode = 2
+
+[node name="statscontainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=191882241]
+layout_mode = 2
+
+[node name="stat1" type="Label" parent="PanelContainer/VBoxContainer/statscontainer" unique_id=643319331]
+layout_mode = 2
+
+[node name="stat2" type="Label" parent="PanelContainer/VBoxContainer/statscontainer" unique_id=994613006]
+layout_mode = 2
+
+[node name="stat3" type="Label" parent="PanelContainer/VBoxContainer/statscontainer" unique_id=1405431619]
+layout_mode = 2
+
+[node name="buttoncontainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=1628775014]
+layout_mode = 2
+
+[node name="retrybutton" type="Button" parent="PanelContainer/VBoxContainer/buttoncontainer" unique_id=1627874431]
+layout_mode = 2
+text = "Rejouer"
+
+[node name="menubutton" type="Button" parent="PanelContainer/VBoxContainer/buttoncontainer" unique_id=996762836]
+layout_mode = 2
+text = "Menu principal"

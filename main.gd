@@ -145,5 +145,7 @@ func finish_session() -> void:
 	
 	# Appel du Singleton
 	Sessionmanager.save_session("flick", flick_metrics)
+	# Transition automatique vers le récap
+	get_tree().change_scene_to_file("res://ResultScreen.tscn")
 
 	
