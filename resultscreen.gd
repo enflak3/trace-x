@@ -94,7 +94,7 @@ func _on_retry_pressed() -> void:
 
 func _on_menu_pressed() -> void:
 	# Si votre binôme a fait un MainMenu.tscn, sinon recharge le jeu
-	if ResourceLoader.exists("res://MainMenu.tscn"):
-		get_tree().change_scene_to_file("res://MainMenu.tscn")
+	if ResourceLoader.exists("res://main_menu.tscn"):
+		get_tree().change_scene_to_file("res://main_menu.tscn")
 	else:
 		print("Pas encore de MainMenu.tscn défini !")
