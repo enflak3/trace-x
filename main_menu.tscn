@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://cs4vtsvd807ms"]
+
+[ext_resource type="Script" uid="uid://c614wg7dau8a8" path="res://main_menu.gd" id="1_06t4h"]
+
+[node name="MainMenu" type="Control" unique_id=1301583674]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_06t4h")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=86355285]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -23.5
+offset_right = 4.0
+offset_bottom = 23.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=422736733]
+layout_mode = 2
+text = "AIM TRAINER 2D"
+
+[node name="BtnFlick" type="Button" parent="VBoxContainer" unique_id=1641255369]
+layout_mode = 2
+text = "Mode Flicking"
+
+[node name="BtnTracking" type="Button" parent="VBoxContainer" unique_id=1310452859]
+layout_mode = 2
+text = "Mode Tracking"
+
+[connection signal="pressed" from="VBoxContainer/BtnFlick" to="." method="_on_btn_flick_pressed"]
+[connection signal="pressed" from="VBoxContainer/BtnTracking" to="." method="_on_btn_tracking_pressed"]
