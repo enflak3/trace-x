@@ -84,7 +84,7 @@ func _start_flick(count: int) -> void:
 	get_tree().change_scene_to_file("res://Main.tscn")
 
 func _on_tracking_pressed() -> void:
-	get_tree().change_scene_to_file("res://TrackingGame.tscn")
+	get_tree().change_scene_to_file("res://trackinggame.tscn")
 
 func _on_settings_pressed() -> void:
 	main_vbox.visible = false
