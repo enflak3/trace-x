@@ -1,6 +1,9 @@
 extends Node2D
 
 var tracking_target_scene: PackedScene = preload("res://targettracking.tscn")
+@onready var pause_menu: PanelContainer = $PauseLayer/PauseMenu
+@onready var btn_resume: Button = $PauseLayer/PauseMenu/VBoxContainer/BtnResume
+@onready var btn_quit: Button = $PauseLayer/PauseMenu/VBoxContainer/BtnQuit
 
 const SESSION_DURATION_SEC: float = 15.0
 var time_elapsed: float = 0.0
@@ -9,6 +12,11 @@ var session_active: bool = false
 
 func _ready() -> void:
 	start_tracking_session()
+	
+	# Initialisation du menu pause
+	pause_menu.visible = false
+	btn_resume.pressed.connect(_resume_game)
+	btn_quit.pressed.connect(_quit_to_menu)
 
 func _process(delta: float) -> void:
 	if not session_active:
@@ -54,3 +62,26 @@ func finish_tracking_session() -> void:
 	active_target.queue_free()
 	# Transition automatique vers le récap
 	get_tree().change_scene_to_file("res://resultscreen.tscn")
+	
+	
+	
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_cancel"):
+		if get_tree().paused:
+			_resume_game()
+		else:
+			_pause_game()
+
+func _pause_game() -> void:
+	get_tree().paused = true
+	pause_menu.visible = true
+
+func _resume_game() -> void:
+	get_tree().paused = false
+	pause_menu.visible = false
+
+func _quit_to_menu() -> void:
+	get_tree().paused = false # Indispensable avant de changer de scène
+	get_tree().change_scene_to_file("res://main_menu.tscn")
+	
+	
