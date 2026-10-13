@@ -5,6 +5,7 @@ extends Control
 @onready var btn_flick: Button = $VBoxContainer/BtnFlick
 @onready var btn_tracking: Button = $VBoxContainer/BtnTracking
 @onready var btn_settings: Button = $BtnSettings
+@onready var btn_quit: Button = $VBoxContainer/BtnQuit
 
 # Sélecteur de cibles Flick
 @onready var flick_panel: PanelContainer = $FlickSelectPanel
@@ -55,6 +56,7 @@ func _ready() -> void:
 	btn_flick.pressed.connect(_on_flick_pressed)
 	btn_tracking.pressed.connect(_on_tracking_pressed)
 	btn_settings.pressed.connect(_on_settings_pressed)
+	btn_quit.pressed.connect(func(): get_tree().quit())
 
 	# Connexions sélecteur de cibles
 	btn_10.pressed.connect(func(): _start_flick(10))

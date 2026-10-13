@@ -38,6 +38,10 @@ text = "Mode Flicking"
 layout_mode = 2
 text = "Mode Tracking"
 
+[node name="BtnQuit" type="Button" parent="VBoxContainer" unique_id=2017787268]
+layout_mode = 2
+text = "Quitter le jeu "
+
 [node name="FlickSelectPanel" type="PanelContainer" parent="." unique_id=943096321]
 visible = false
 layout_mode = 1
