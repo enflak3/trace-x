@@ -1,8 +1,44 @@
-[node name="BtnBack" type="Button" parent="FlickSelectPanel/VBoxContainer" unique_id=1545175015]
-layout_mode = 2
-text = "Retour"
+[gd_scene format=3 uid="uid://cs4vtsvd807ms"]
 
-[node name="TrackingSelectPanel" type="PanelContainer" parent="." unique_id=754337959]
+[ext_resource type="Script" uid="uid://c614wg7dau8a8" path="res://main_menu.gd" id="1_06t4h"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_06t4h")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -23.5
+offset_right = 4.0
+offset_bottom = 23.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "AIM TRAINER 2D"
+horizontal_alignment = 1
+
+[node name="BtnFlick" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Mode Flicking"
+
+[node name="BtnTracking" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Mode Tracking"
+
+[node name="FlickSelectPanel" type="PanelContainer" parent="."]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -17,31 +53,77 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TrackingSelectPanel" unique_id=119927736]
+[node name="VBoxContainer" type="VBoxContainer" parent="FlickSelectPanel"]
 layout_mode = 2
 
-[node name="Choisir la difficulté" type="Label" parent="TrackingSelectPanel/VBoxContainer" unique_id=454209459]
+[node name="Nombre de cibles" type="Label" parent="FlickSelectPanel/VBoxContainer"]
 layout_mode = 2
+text = "Nombre de cibles"
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="TrackingSelectPanel/VBoxContainer" unique_id=917055339]
+[node name="HBoxContainer" type="HBoxContainer" parent="FlickSelectPanel/VBoxContainer"]
 layout_mode = 2
 
-[node name="BtnEasy" type="Button" parent="TrackingSelectPanel/VBoxContainer/HBoxContainer" unique_id=630816648]
+[node name="Btn10" type="Button" parent="FlickSelectPanel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(70, 50)
+layout_mode = 2
+text = "10"
+
+[node name="Btn25" type="Button" parent="FlickSelectPanel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(70, 50)
+layout_mode = 2
+text = "25"
+
+[node name="Btn50" type="Button" parent="FlickSelectPanel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(70, 50)
+layout_mode = 2
+text = "50"
+
+[node name="BtnBack" type="Button" parent="FlickSelectPanel/VBoxContainer"]
+layout_mode = 2
+text = "Retour"
+
+[node name="TrackingSelectPanel" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TrackingSelectPanel"]
+layout_mode = 2
+
+[node name="Choisir la difficulte" type="Label" parent="TrackingSelectPanel/VBoxContainer"]
+layout_mode = 2
+text = "Choisir la difficulté"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TrackingSelectPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="BtnEasy" type="Button" parent="TrackingSelectPanel/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(70, 50)
 layout_mode = 2
 text = "Facile"
 
-[node name="BtnMedium" type="Button" parent="TrackingSelectPanel/VBoxContainer/HBoxContainer" unique_id=1748932631]
+[node name="BtnMedium" type="Button" parent="TrackingSelectPanel/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(70, 50)
 layout_mode = 2
 text = "Moyen"
 
-[node name="BtnHard" type="Button" parent="TrackingSelectPanel/VBoxContainer/HBoxContainer" unique_id=997447766]
+[node name="BtnHard" type="Button" parent="TrackingSelectPanel/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(70, 50)
 layout_mode = 2
 text = "Difficile"
 
-[node name="BtnBack" type="Button" parent="TrackingSelectPanel/VBoxContainer" unique_id=1768869080]
+[node name="BtnBack" type="Button" parent="TrackingSelectPanel/VBoxContainer"]
 layout_mode = 2
 text = "Retour"
