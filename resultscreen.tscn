@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://rxpv8l0oft3x"]
 
 [ext_resource type="Script" uid="uid://doys2ad3aixxr" path="res://resultscreen.gd" id="1_g1oky"]
+[ext_resource type="FontFile" uid="uid://dk4gl5munqf24" path="res://Orbitron-VariableFont_wght.ttf" id="2_n0bps"]
 
 [node name="resultscreen" type="Control" unique_id=1247441075]
 layout_mode = 3
@@ -40,16 +41,19 @@ layout_mode = 2
 
 [node name="modetitle" type="Label" parent="PanelContainer/VBoxContainer" unique_id=245526019]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_n0bps")
 theme_override_font_sizes/font_size = 22
 horizontal_alignment = 1
 
 [node name="gradelabel" type="Label" parent="PanelContainer/VBoxContainer" unique_id=1563371242]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_n0bps")
 theme_override_font_sizes/font_size = 64
 horizontal_alignment = 1
 
 [node name="accuracylabel" type="Label" parent="PanelContainer/VBoxContainer" unique_id=297950401]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_n0bps")
 theme_override_font_sizes/font_size = 26
 horizontal_alignment = 1
 
@@ -61,20 +65,25 @@ layout_mode = 2
 
 [node name="stat1" type="Label" parent="PanelContainer/VBoxContainer/statscontainer" unique_id=643319331]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_n0bps")
 
 [node name="stat2" type="Label" parent="PanelContainer/VBoxContainer/statscontainer" unique_id=994613006]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_n0bps")
 
 [node name="stat3" type="Label" parent="PanelContainer/VBoxContainer/statscontainer" unique_id=1405431619]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_n0bps")
 
 [node name="buttoncontainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=1628775014]
 layout_mode = 2
 
 [node name="retrybutton" type="Button" parent="PanelContainer/VBoxContainer/buttoncontainer" unique_id=1627874431]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_n0bps")
 text = "Rejouer"
 
 [node name="menubutton" type="Button" parent="PanelContainer/VBoxContainer/buttoncontainer" unique_id=996762836]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_n0bps")
 text = "Menu principal"

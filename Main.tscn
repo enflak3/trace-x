@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://l6m0w4enrqsi"]
 
 [ext_resource type="Script" uid="uid://xw0e7y7vmq6l" path="res://main.gd" id="1_glv2v"]
+[ext_resource type="FontFile" uid="uid://dk4gl5munqf24" path="res://Orbitron-VariableFont_wght.ttf" id="2_uu6xs"]
 
 [node name="Main" type="Node2D" unique_id=1524956141]
 script = ExtResource("1_glv2v")
@@ -28,14 +29,17 @@ layout_mode = 2
 
 [node name="Pause" type="Label" parent="PauseLayer/PauseMenu/VBoxContainer" unique_id=1972470821]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_uu6xs")
 text = "Pause"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="BtnResume" type="Button" parent="PauseLayer/PauseMenu/VBoxContainer" unique_id=1773483094]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_uu6xs")
 text = "Reprendre"
 
 [node name="BtnQuit" type="Button" parent="PauseLayer/PauseMenu/VBoxContainer" unique_id=634586824]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_uu6xs")
 text = "Quitter"
