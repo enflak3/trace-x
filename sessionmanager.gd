@@ -1,6 +1,32 @@
 extends Node
 
 var target_count_setting: int = 10
+var tracking_difficulty: String = "medium"
+
+const TRACKING_PRESETS: Dictionary = {
+	"easy": {
+		"max_speed": 250.0,
+		"acceleration": 3.0,
+		"target_scale": 1.25,
+		"strafe_min": 0.9,
+		"strafe_max": 1.8
+	},
+	"medium": {
+		"max_speed": 380.0,
+		"acceleration": 4.5,
+		"target_scale": 1.0,
+		"strafe_min": 0.5,
+		"strafe_max": 1.3
+	},
+	"hard": {
+		"max_speed": 540.0,
+		"acceleration": 7.5,
+		"target_scale": 0.75,
+		"strafe_min": 0.25,
+		"strafe_max": 0.75
+	}
+}
+
 var history: Array = []
 
 # Overlay FPS global

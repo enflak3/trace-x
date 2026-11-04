@@ -1,102 +1,8 @@
-[gd_scene format=3 uid="uid://cs4vtsvd807ms"]
-
-[ext_resource type="Script" uid="uid://c614wg7dau8a8" path="res://main_menu.gd" id="1_06t4h"]
-[ext_resource type="Texture2D" uid="uid://daryke23gue0j" path="res://gear-removebg-preview.png" id="2_7vrkn"]
-
-[node name="MainMenu" type="Control" unique_id=1301583674]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("1_06t4h")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=86355285]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -4.0
-offset_top = -23.5
-offset_right = 4.0
-offset_bottom = 23.5
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="VBoxContainer" unique_id=422736733]
-layout_mode = 2
-text = "AIM TRAINER 2D"
-
-[node name="BtnFlick" type="Button" parent="VBoxContainer" unique_id=1641255369]
-layout_mode = 2
-text = "Mode Flicking"
-
-[node name="BtnTracking" type="Button" parent="VBoxContainer" unique_id=1310452859]
-layout_mode = 2
-text = "Mode Tracking"
-
-[node name="BtnQuit" type="Button" parent="VBoxContainer" unique_id=2017787268]
-layout_mode = 2
-text = "Quitter le jeu "
-
-[node name="FlickSelectPanel" type="PanelContainer" parent="." unique_id=943096321]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="FlickSelectPanel" unique_id=370234847]
-layout_mode = 2
-
-[node name="Nombre de cibles" type="Label" parent="FlickSelectPanel/VBoxContainer" unique_id=946609378]
-layout_mode = 2
-horizontal_alignment = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="FlickSelectPanel/VBoxContainer" unique_id=912842343]
-layout_mode = 2
-
-[node name="Btn10" type="Button" parent="FlickSelectPanel/VBoxContainer/HBoxContainer" unique_id=1515724876]
-custom_minimum_size = Vector2(70, 50)
-layout_mode = 2
-text = "10"
-
-[node name="Btn25" type="Button" parent="FlickSelectPanel/VBoxContainer/HBoxContainer" unique_id=1317856658]
-custom_minimum_size = Vector2(70, 50)
-layout_mode = 2
-text = "25"
-
-[node name="Btn50" type="Button" parent="FlickSelectPanel/VBoxContainer/HBoxContainer" unique_id=382504192]
-custom_minimum_size = Vector2(70, 50)
-layout_mode = 2
-text = "50"
-
 [node name="BtnBack" type="Button" parent="FlickSelectPanel/VBoxContainer" unique_id=1545175015]
 layout_mode = 2
 text = "Retour"
 
-[node name="BtnSettings" type="Button" parent="." unique_id=832547318]
-layout_mode = 1
-offset_left = 15.0
-offset_top = 15.0
-offset_right = 523.0
-offset_bottom = 523.0
-scale = Vector2(0.2, 0.2)
-offset_transform_enabled = true
-icon = ExtResource("2_7vrkn")
-
-[node name="SettingsPanel" type="PanelContainer" parent="." unique_id=117764600]
+[node name="TrackingSelectPanel" type="PanelContainer" parent="." unique_id=754337959]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -111,35 +17,31 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="SettingsPanel" unique_id=1628153138]
+[node name="VBoxContainer" type="VBoxContainer" parent="TrackingSelectPanel" unique_id=119927736]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="SettingsPanel/VBoxContainer" unique_id=161372388]
+[node name="Choisir la difficulté" type="Label" parent="TrackingSelectPanel/VBoxContainer" unique_id=454209459]
 layout_mode = 2
-text = "PARAMÈTRES	"
 horizontal_alignment = 1
 
-[node name="CheckFullscreen" type="CheckButton" parent="SettingsPanel/VBoxContainer" unique_id=1894645687]
-layout_mode = 2
-text = "Plein écran"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="SettingsPanel/VBoxContainer" unique_id=343986641]
+[node name="HBoxContainer" type="HBoxContainer" parent="TrackingSelectPanel/VBoxContainer" unique_id=917055339]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="SettingsPanel/VBoxContainer/HBoxContainer" unique_id=1339917649]
+[node name="BtnEasy" type="Button" parent="TrackingSelectPanel/VBoxContainer/HBoxContainer" unique_id=630816648]
+custom_minimum_size = Vector2(70, 50)
 layout_mode = 2
-text = "Limite FPS : "
+text = "Facile"
 
-[node name="OptionFps" type="OptionButton" parent="SettingsPanel/VBoxContainer/HBoxContainer" unique_id=409852440]
+[node name="BtnMedium" type="Button" parent="TrackingSelectPanel/VBoxContainer/HBoxContainer" unique_id=1748932631]
+custom_minimum_size = Vector2(70, 50)
 layout_mode = 2
+text = "Moyen"
 
-[node name="CheckShowFps" type="CheckButton" parent="SettingsPanel/VBoxContainer" unique_id=515276170]
+[node name="BtnHard" type="Button" parent="TrackingSelectPanel/VBoxContainer/HBoxContainer" unique_id=997447766]
+custom_minimum_size = Vector2(70, 50)
 layout_mode = 2
-text = "Afficher les FPS"
+text = "Difficile"
 
-[node name="BtnCloseSettings" type="Button" parent="SettingsPanel/VBoxContainer" unique_id=1325409911]
+[node name="BtnBack" type="Button" parent="TrackingSelectPanel/VBoxContainer" unique_id=1768869080]
 layout_mode = 2
-text = "Fermer"
-
-[connection signal="pressed" from="VBoxContainer/BtnFlick" to="." method="_on_btn_flick_pressed"]
-[connection signal="pressed" from="VBoxContainer/BtnTracking" to="." method="_on_btn_tracking_pressed"]
+text = "Retour"
