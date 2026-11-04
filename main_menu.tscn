@@ -81,5 +81,53 @@ text = "50"
 layout_mode = 2
 text = "Retour"
 
+[node name="TrackingSelectPanel" type="PanelContainer" parent="." unique_id=754337959]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TrackingSelectPanel" unique_id=119927736]
+layout_mode = 2
+
+[node name="Choisir la difficulté" type="Label" parent="TrackingSelectPanel/VBoxContainer" unique_id=454209459]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TrackingSelectPanel/VBoxContainer" unique_id=917055339]
+layout_mode = 2
+
+[node name="BtnEasy" type="Button" parent="TrackingSelectPanel/VBoxContainer/HBoxContainer" unique_id=630816648]
+custom_minimum_size = Vector2(70, 50)
+layout_mode = 2
+text = "Facile"
+
+[node name="BtnMedium" type="Button" parent="TrackingSelectPanel/VBoxContainer/HBoxContainer" unique_id=1748932631]
+custom_minimum_size = Vector2(70, 50)
+layout_mode = 2
+text = "Moyen"
+
+[node name="BtnHard" type="Button" parent="TrackingSelectPanel/VBoxContainer/HBoxContainer" unique_id=997447766]
+custom_minimum_size = Vector2(70, 50)
+layout_mode = 2
+text = "Difficile"
+
+[node name="BtnBack" type="Button" parent="TrackingSelectPanel/VBoxContainer" unique_id=1768869080]
+layout_mode = 2
+text = "Retour"
+
 [connection signal="pressed" from="VBoxContainer/BtnFlick" to="." method="_on_btn_flick_pressed"]
 [connection signal="pressed" from="VBoxContainer/BtnTracking" to="." method="_on_btn_tracking_pressed"]
+[connection signal="pressed" from="TrackingSelectPanel/VBoxContainer/HBoxContainer/BtnEasy" to="." method="_on_btn_easy_pressed"]
+[connection signal="pressed" from="TrackingSelectPanel/VBoxContainer/HBoxContainer/BtnMedium" to="." method="_on_btn_medium_pressed"]
+[connection signal="pressed" from="TrackingSelectPanel/VBoxContainer/HBoxContainer/BtnHard" to="." method="_on_btn_hard_pressed"]
+[connection signal="pressed" from="TrackingSelectPanel/VBoxContainer/BtnBack" to="." method="_on_btn_back_pressed"]

@@ -2,6 +2,9 @@ extends Area2D
 
 @export var max_speed: float = 380.0
 @export var acceleration: float = 4.5
+@export var target_scale: float = 1.0
+@export var strafe_interval_min: float = 0.5
+@export var strafe_interval_max: float = 1.3
 # Marge d'éloignement par rapport aux bords de l'écran (en pixels)
 @export var screen_margin: float = 120.0
 
@@ -9,6 +12,7 @@ var current_velocity: Vector2 = Vector2.ZERO
 var target_velocity: Vector2 = Vector2.ZERO
 
 var is_hovered: bool = false
+var is_moving: bool = false
 var tracked_time_msec: int = 0
 var last_enter_time: int = 0
 
@@ -17,10 +21,27 @@ var distance_samples: Array[float] = []
 var strafe_timer: float = 0.0
 var next_strafe_interval: float = 0.8
 
-func _ready() -> void:
+func apply_difficulty(preset: Dictionary) -> void:
+	max_speed = preset.get("max_speed", 380.0)
+	acceleration = preset.get("acceleration", 4.5)
+	target_scale = preset.get("target_scale", 1.0)
+	strafe_interval_min = preset.get("strafe_min", 0.5)
+	strafe_interval_max = preset.get("strafe_max", 1.3)
+	scale = Vector2(target_scale, target_scale)
+
+func start_moving() -> void:
+	tracked_time_msec = 0
+	distance_samples.clear()
+	is_moving = true
+	# Si le joueur a déjà placé son curseur sur la boule pendant les 3 s, on démarre le chrono ici
+	if is_hovered:
+		last_enter_time = Time.get_ticks_msec()
 	pick_new_target_velocity()
 
 func _process(delta: float) -> void:
+	if not is_moving:
+		return
+
 	var screen_size = get_viewport_rect().size
 	var bounds_min = Vector2(screen_margin, screen_margin)
 	var bounds_max = screen_size - Vector2(screen_margin, screen_margin)
@@ -54,13 +75,13 @@ func _process(delta: float) -> void:
 
 func pick_new_target_velocity() -> void:
 	strafe_timer = 0.0
-	next_strafe_interval = randf_range(0.5, 1.3)
+	next_strafe_interval = randf_range(strafe_interval_min, strafe_interval_max)
 
 	var screen_center = get_viewport_rect().size / 2.0
 	var to_center = (screen_center - position).normalized()
 	
 	# Calcule la distance relative par rapport au centre (0.0 au centre, 1.0 aux bords)
-	var max_offset = (screen_center - Vector2(screen_margin, screen_margin)).length()
+	var max_offset = max((screen_center - Vector2(screen_margin, screen_margin)).length(), 1.0)
 	var current_offset = position.distance_to(screen_center)
 	var danger_factor = clamp(current_offset / max_offset, 0.0, 1.0)
 	
@@ -76,10 +97,12 @@ func pick_new_target_velocity() -> void:
 
 func _on_mouse_entered() -> void:
 	is_hovered = true
-	last_enter_time = Time.get_ticks_msec()
+	if is_moving:
+		last_enter_time = Time.get_ticks_msec()
 
 func _on_mouse_exited() -> void:
 	if is_hovered:
-		var now = Time.get_ticks_msec()
-		tracked_time_msec += (now - last_enter_time)
+		if is_moving:
+			var now = Time.get_ticks_msec()
+			tracked_time_msec += (now - last_enter_time)
 		is_hovered = false

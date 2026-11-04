@@ -12,6 +12,12 @@ extends Control
 
 var last_mode: String = ""
 
+const DIFFICULTY_LABELS: Dictionary = {
+	"easy": "Facile",
+	"medium": "Moyen",
+	"hard": "Difficile"
+}
+
 func _ready() -> void:
 	retry_button.pressed.connect(_on_retry_pressed)
 	menu_button.pressed.connect(_on_menu_pressed)
@@ -26,7 +32,8 @@ func display_last_results() -> void:
 	var metrics = session["metrics"]
 	
 	if last_mode == "flick":
-		mode_title.text = "RÉSULTATS - FLICKING"
+		var total_targets = int(metrics.get("total_targets", Sessionmanager.target_count_setting))
+		mode_title.text = "RÉSULTATS - FLICKING (" + str(total_targets) + " CIBLES)"
 		
 		# On affiche le taux de réussite brut comme précision principale (pour la note SS/S/A/...)
 		var hit_rate = float(metrics.get("hit_rate_pct", 0.0))
@@ -52,7 +59,10 @@ func display_last_results() -> void:
 		stat3.text = "Efficacité trajectoire : " + str(snapped(avg_eff * 100.0, 0.1)) + " %"
 		
 	elif last_mode == "tracking":
-		mode_title.text = "RÉSULTATS - TRACKING"
+		var raw_diff: String = metrics.get("difficulty", Sessionmanager.tracking_difficulty)
+		var diff_label: String = DIFFICULTY_LABELS.get(raw_diff, raw_diff.capitalize())
+		
+		mode_title.text = "RÉSULTATS - TRACKING (" + diff_label.to_upper() + ")"
 		var tot = float(metrics["time_on_target_pct"])
 		accuracy_label.text = "Time on Target : " + str(tot) + " %"
 		grade_label.text = calculate_grade(tot)
@@ -63,7 +73,7 @@ func display_last_results() -> void:
 		
 		stat1.text = "Précision de centrage : " + str(snapped(centering_score, 0.1)) + " %"
 		stat2.text = "Dérive moyenne : " + str(avg_offset) + " px"
-		stat3.text = "Durée du test : " + str(metrics["duration_sec"]) + " s"
+		stat3.text = "Difficulté : " + diff_label + " (" + str(int(metrics["duration_sec"])) + " s)"
 
 	# Code couleur osu! pour le grade
 	match grade_label.text:
@@ -95,7 +105,6 @@ func _on_retry_pressed() -> void:
 		get_tree().change_scene_to_file("res://trackinggame.tscn")
 
 func _on_menu_pressed() -> void:
-	# Si votre binôme a fait un MainMenu.tscn, sinon recharge le jeu
 	if ResourceLoader.exists("res://main_menu.tscn"):
 		get_tree().change_scene_to_file("res://main_menu.tscn")
 	else:
