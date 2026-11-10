@@ -28,13 +28,10 @@ const TRACKING_PRESETS: Dictionary = {
 }
 
 var history: Array = []
-
-# Overlay FPS global
 var fps_label: Label = null
 var show_fps: bool = false
 
 func _ready() -> void:
-	# CanvasLayer indépendant pour que l'overlay reste par-dessus toutes les scènes
 	var canvas_layer = CanvasLayer.new()
 	canvas_layer.layer = 128
 	add_child(canvas_layer)
