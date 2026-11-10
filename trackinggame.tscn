@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://ck44avhuwjaas"]
 
 [ext_resource type="Script" uid="uid://be40pmw4y50t3" path="res://trackinggame.gd" id="1_8hues"]
+[ext_resource type="FontFile" uid="uid://dk4gl5munqf24" path="res://Orbitron-VariableFont_wght.ttf" id="2_sfik0"]
 
 [node name="trackinggame" type="Node2D" unique_id=382880099]
 script = ExtResource("1_8hues")
@@ -28,14 +29,17 @@ layout_mode = 2
 
 [node name="Pause" type="Label" parent="PauseLayer/PauseMenu/VBoxContainer" unique_id=1440264143]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_sfik0")
 text = "Pause"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="BtnResume" type="Button" parent="PauseLayer/PauseMenu/VBoxContainer" unique_id=807697419]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_sfik0")
 text = "Reprendre"
 
 [node name="BtnQuit" type="Button" parent="PauseLayer/PauseMenu/VBoxContainer" unique_id=1449458394]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_sfik0")
 text = "Quitter"
