@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://cs4vtsvd807ms"]
 
 [ext_resource type="Script" uid="uid://c614wg7dau8a8" path="res://main_menu.gd" id="1_06t4h"]
+[ext_resource type="FontFile" uid="uid://dk4gl5munqf24" path="res://Orbitron-VariableFont_wght.ttf" id="2_7vrkn"]
 
-[node name="MainMenu" type="Control"]
+[node name="MainMenu" type="Control" unique_id=1510426711]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,7 +12,16 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_06t4h")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="background" type="ColorRect" parent="." unique_id=1907056962]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.07058824, 0.07450981, 0.101960786, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1668813977]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -26,27 +36,32 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 10
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=1835418497]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_7vrkn")
+theme_override_font_sizes/font_size = 30
 text = "AIM TRAINER 2D"
 horizontal_alignment = 1
 
-[node name="BtnFlick" type="Button" parent="VBoxContainer"]
+[node name="BtnFlick" type="Button" parent="VBoxContainer" unique_id=725273447]
 custom_minimum_size = Vector2(180, 40)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_7vrkn")
 text = "Mode Flicking"
 
-[node name="BtnTracking" type="Button" parent="VBoxContainer"]
+[node name="BtnTracking" type="Button" parent="VBoxContainer" unique_id=779522192]
 custom_minimum_size = Vector2(180, 40)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_7vrkn")
 text = "Mode Tracking"
 
-[node name="BtnQuit" type="Button" parent="VBoxContainer"]
+[node name="BtnQuit" type="Button" parent="VBoxContainer" unique_id=1356037743]
 custom_minimum_size = Vector2(180, 40)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_7vrkn")
 text = "Quitter"
 
-[node name="BtnSettings" type="Button" parent="."]
+[node name="BtnSettings" type="Button" parent="." unique_id=2063039613]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -56,9 +71,10 @@ offset_top = 20.0
 offset_right = -20.0
 offset_bottom = 60.0
 grow_horizontal = 0
+theme_override_fonts/font = ExtResource("2_7vrkn")
 text = "Paramètres"
 
-[node name="FlickSelectPanel" type="PanelContainer" parent="."]
+[node name="FlickSelectPanel" type="PanelContainer" parent="." unique_id=684033774]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -73,39 +89,44 @@ offset_bottom = 70.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="FlickSelectPanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="FlickSelectPanel" unique_id=995860466]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Nombre de cibles" type="Label" parent="FlickSelectPanel/VBoxContainer"]
+[node name="Nombre de cibles" type="Label" parent="FlickSelectPanel/VBoxContainer" unique_id=1153067672]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_7vrkn")
 text = "Nombre de cibles"
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="FlickSelectPanel/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="FlickSelectPanel/VBoxContainer" unique_id=575898050]
 layout_mode = 2
 alignment = 1
 
-[node name="Btn10" type="Button" parent="FlickSelectPanel/VBoxContainer/HBoxContainer"]
+[node name="Btn10" type="Button" parent="FlickSelectPanel/VBoxContainer/HBoxContainer" unique_id=537239008]
 custom_minimum_size = Vector2(70, 50)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_7vrkn")
 text = "10"
 
-[node name="Btn25" type="Button" parent="FlickSelectPanel/VBoxContainer/HBoxContainer"]
+[node name="Btn25" type="Button" parent="FlickSelectPanel/VBoxContainer/HBoxContainer" unique_id=1007899464]
 custom_minimum_size = Vector2(70, 50)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_7vrkn")
 text = "25"
 
-[node name="Btn50" type="Button" parent="FlickSelectPanel/VBoxContainer/HBoxContainer"]
+[node name="Btn50" type="Button" parent="FlickSelectPanel/VBoxContainer/HBoxContainer" unique_id=100000899]
 custom_minimum_size = Vector2(70, 50)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_7vrkn")
 text = "50"
 
-[node name="BtnBack" type="Button" parent="FlickSelectPanel/VBoxContainer"]
+[node name="BtnBack" type="Button" parent="FlickSelectPanel/VBoxContainer" unique_id=1160523917]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_7vrkn")
 text = "Retour"
 
-[node name="TrackingSelectPanel" type="PanelContainer" parent="."]
+[node name="TrackingSelectPanel" type="PanelContainer" parent="." unique_id=780136913]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -120,39 +141,44 @@ offset_bottom = 70.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TrackingSelectPanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TrackingSelectPanel" unique_id=868783881]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Choisir la difficulte" type="Label" parent="TrackingSelectPanel/VBoxContainer"]
+[node name="Choisir la difficulte" type="Label" parent="TrackingSelectPanel/VBoxContainer" unique_id=2051030432]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_7vrkn")
 text = "Choisir la difficulté"
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="TrackingSelectPanel/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="TrackingSelectPanel/VBoxContainer" unique_id=1769060821]
 layout_mode = 2
 alignment = 1
 
-[node name="BtnEasy" type="Button" parent="TrackingSelectPanel/VBoxContainer/HBoxContainer"]
+[node name="BtnEasy" type="Button" parent="TrackingSelectPanel/VBoxContainer/HBoxContainer" unique_id=1532968791]
 custom_minimum_size = Vector2(70, 50)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_7vrkn")
 text = "Facile"
 
-[node name="BtnMedium" type="Button" parent="TrackingSelectPanel/VBoxContainer/HBoxContainer"]
+[node name="BtnMedium" type="Button" parent="TrackingSelectPanel/VBoxContainer/HBoxContainer" unique_id=1662882106]
 custom_minimum_size = Vector2(70, 50)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_7vrkn")
 text = "Moyen"
 
-[node name="BtnHard" type="Button" parent="TrackingSelectPanel/VBoxContainer/HBoxContainer"]
+[node name="BtnHard" type="Button" parent="TrackingSelectPanel/VBoxContainer/HBoxContainer" unique_id=601019028]
 custom_minimum_size = Vector2(70, 50)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_7vrkn")
 text = "Difficile"
 
-[node name="BtnBack" type="Button" parent="TrackingSelectPanel/VBoxContainer"]
+[node name="BtnBack" type="Button" parent="TrackingSelectPanel/VBoxContainer" unique_id=986162132]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_7vrkn")
 text = "Retour"
 
-[node name="SettingsPanel" type="PanelContainer" parent="."]
+[node name="SettingsPanel" type="PanelContainer" parent="." unique_id=1013090093]
 visible = false
 custom_minimum_size = Vector2(280, 200)
 layout_mode = 1
@@ -168,36 +194,42 @@ offset_bottom = 100.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="SettingsPanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="SettingsPanel" unique_id=390689871]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="Label" type="Label" parent="SettingsPanel/VBoxContainer"]
+[node name="Label" type="Label" parent="SettingsPanel/VBoxContainer" unique_id=1571496807]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_7vrkn")
 text = "PARAMÈTRES"
 horizontal_alignment = 1
 
-[node name="CheckFullscreen" type="CheckButton" parent="SettingsPanel/VBoxContainer"]
+[node name="CheckFullscreen" type="CheckButton" parent="SettingsPanel/VBoxContainer" unique_id=1444314805]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_7vrkn")
 text = "Plein écran"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="SettingsPanel/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="SettingsPanel/VBoxContainer" unique_id=257691759]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="SettingsPanel/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="SettingsPanel/VBoxContainer/HBoxContainer" unique_id=2002355776]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_7vrkn")
 text = "Limite FPS :"
 
-[node name="BtnFPSLimit" type="OptionButton" parent="SettingsPanel/VBoxContainer/HBoxContainer"]
+[node name="BtnFPSLimit" type="OptionButton" parent="SettingsPanel/VBoxContainer/HBoxContainer" unique_id=943469920]
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_7vrkn")
 
-[node name="BtnShowFPS" type="CheckButton" parent="SettingsPanel/VBoxContainer"]
+[node name="BtnShowFPS" type="CheckButton" parent="SettingsPanel/VBoxContainer" unique_id=717986677]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_7vrkn")
 text = "Afficher les FPS"
 
-[node name="BtnClose" type="Button" parent="SettingsPanel/VBoxContainer"]
+[node name="BtnClose" type="Button" parent="SettingsPanel/VBoxContainer" unique_id=1136473757]
 custom_minimum_size = Vector2(0, 36)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_7vrkn")
 text = "Fermer"
